@@ -43,13 +43,20 @@ public class Switcher {
 
         ViewGroup parent = (ViewGroup) contentView.getParent();
 
+        int rawIndex = 0;
+        if (null != parent) {
+            rawIndex = parent.indexOfChild(contentView);
+            parent.removeView(contentView);
+        }
 
-        int index = parent.indexOfChild(contentView);
-        parent.removeView(contentView);
 
         FrameLayout.LayoutParams newLp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
         mWarpViewGroup.addView(contentView, newLp);
-        parent.addView(mWarpViewGroup, index);
+
+        if (null != parent) {
+            parent.addView(mWarpViewGroup, rawIndex);
+
+        }
 
     }
 
@@ -64,6 +71,14 @@ public class Switcher {
         FrameLayout parent = activity.findViewById(android.R.id.content);
 
         Switcher switcher = new Switcher(activity, parent.getChildAt(0));
+
+        return switcher;
+    }
+
+    @NonNull
+    public static Switcher with(@NonNull View view) {
+
+        Switcher switcher = new Switcher(view.getContext(), view);
 
         return switcher;
     }
@@ -88,6 +103,9 @@ public class Switcher {
         }
     }
 
+    public View getWrapView() {
+        return mWarpViewGroup;
+    }
 
     private String getViewTypeName(int type) {
         switch (type) {

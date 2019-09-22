@@ -4,21 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_activity"
+        android:id="@+id/btn_load_failed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="withActivity"
-        android:text="with activity" />
+        android:onClick="showLoadFailed"
+        android:text="load failed" />
 
     <Button
-        android:id="@+id/btn_fragment"
+        android:id="@+id/btn_load_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="withFragment"
-        android:text="with fragment" />
+        android:onClick="showLoadEmpty"
+        android:text="load empty" />
+
+    <Button
+        android:id="@+id/btn_load_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="showLoadSuccess"
+        android:text="load success" />
 
 </LinearLayout>
